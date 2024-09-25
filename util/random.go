@@ -6,6 +6,12 @@ import (
 	"time"
 )
 
+const (
+	USD = "USD"
+	EUR = "EUR"
+	INR = "INR"
+)
+
 func init() {
 	src := rand.NewSource(time.Now().UnixNano())
 	rand.New(src)
@@ -34,8 +40,20 @@ func RandomMoney() int64 {
 }
 
 func RandomCurrency() string {
-	currencies := []string{"USD", "EUR", "INR"}
+	currencies := []string{USD, INR, EUR}
 	n := len(currencies)
 	index := RandomInt(0, int64(n-1))
 	return currencies[index]
+}
+
+func ValidCurrency(currency string) bool {
+	switch currency {
+	case USD, EUR, INR:
+		return true
+	}
+	return false
+}
+
+func RandomEmail() string {
+	return RandomString(6) + "@gmail.com"
 }

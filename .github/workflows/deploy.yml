@@ -23,6 +23,11 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+     
+      - name: Get Amazon Secret Manager secrets
+        run: |
+          echo "Fetching secrets from AWS Secrets Manager"
+          aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-north-1:442042538701:secret:simplebank-GsYoaG --query SecretString --output text | jq -r 'to_entries | .[] | "\(.key)=\(.value)"' > app.env
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:

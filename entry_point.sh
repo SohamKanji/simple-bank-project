@@ -7,8 +7,9 @@ until pg_isready -h db -p 5432 -U root; do
 done
 
 # Run migrations using Golang Migrate
+source /app/app.env
 echo "Running database migrations..."
-/app/migrate -path /app/migration -database "postgresql://root:secret@db:5432/simple_bank?sslmode=disable" -verbose up
+/app/migrate -path /app/migration -database "$DB_SOURCE" -verbose up
 
 # Start the Go server
 echo "Starting the Go server..."

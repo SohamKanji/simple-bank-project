@@ -49,12 +49,11 @@ jobs:
       
       - name: Update kubectl context 
         run: |
-             aws eks update-kubeconfig --region eu-north-1 --name simplebank
-             kubectl config use-context arn:aws:eks:eu-north-1:442042538701:cluster/simplebank
+             aws eks update-kubeconfig --region eu-north-1 --name simplebank --kubeconfig ~/.kube/config
 
       - name: Deploy to EKS
         run: |
-          kubectl apply -f eks/aws-auth.yaml --validate=false
-          kubectl apply -f eks/service.yaml
-          kubectl apply -f eks/deployment.yaml
-          kubectl apply -f eks/ingress.yaml
+          kubectl apply -f eks/aws-auth.yaml --validate=false --kubeconfig ~/.kube/config
+          kubectl apply -f eks/service.yaml --kubeconfig ~/.kube/config
+          kubectl apply -f eks/deployment.yaml --kubeconfig ~/.kube/config
+          kubectl apply -f eks/ingress.yaml --kubeconfig ~/.kube/config

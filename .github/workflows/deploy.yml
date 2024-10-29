@@ -53,6 +53,7 @@ jobs:
 
       - name: Deploy to EKS
         run: |
+          set -x
           kubectl apply -f eks/aws-auth.yaml --validate=false --kubeconfig ~/.kube/config
           kubectl apply -f eks/service.yaml --kubeconfig ~/.kube/config
           kubectl apply -f eks/deployment.yaml --kubeconfig ~/.kube/config

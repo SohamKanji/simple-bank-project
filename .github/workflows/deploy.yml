@@ -62,11 +62,14 @@ jobs:
       - name : Check aws caller identity
         run: |
              aws sts get-caller-identity
+      
+      - name : Describe aws-auth config map
+        run : |
+             kubectl describe configmap aws-auth -n kube-system
 
       - name: Deploy to EKS
         run: |
-          set -x
-          kubectl apply -f eks/aws-auth.yaml --validate=false --kubeconfig ~/.kube/config
-          kubectl apply -f eks/service.yaml --kubeconfig ~/.kube/config
-          kubectl apply -f eks/deployment.yaml --kubeconfig ~/.kube/config
-          kubectl apply -f eks/ingress.yaml --kubeconfig ~/.kube/config
+          kubectl apply -f eks/aws-auth.yaml
+          kubectl apply -f eks/service.yaml
+          kubectl apply -f eks/deployment.yaml
+          kubectl apply -f eks/ingress.yaml

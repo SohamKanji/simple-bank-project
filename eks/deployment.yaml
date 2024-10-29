@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simplebank-deployment
+  labels:
+    app: simplebank
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simplebank
+  template:
+    metadata:
+      labels:
+        app: simplebank
+    spec:
+      containers:
+      - name: simplebank
+        image: 442042538701.dkr.ecr.eu-north-1.amazonaws.com/golang/simplebank:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

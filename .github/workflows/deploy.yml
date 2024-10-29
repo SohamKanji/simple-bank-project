@@ -58,6 +58,10 @@ jobs:
       - name: Validate Cluster Access
         run: |
              kubectl cluster-info --kubeconfig ~/.kube/config || echo "Failed to access the cluster"
+      
+      - name : Check aws caller identity
+        run: |
+             aws sts get-caller-identity
 
       - name: Deploy to EKS
         run: |

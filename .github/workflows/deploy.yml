@@ -50,7 +50,7 @@ jobs:
       - name: Update kubectl context 
         run: |
              aws eks update-kubeconfig --region eu-north-1 --name simplebank
-             kubectl config use-context arn:aws:eks:eu-north-1:442042538701:cluster/simpleban
+             kubectl config use-context arn:aws:eks:eu-north-1:442042538701:cluster/simplebank
 
       - name: Deploy to EKS
         run: |

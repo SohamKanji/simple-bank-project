@@ -48,7 +48,9 @@ jobs:
           docker push $REGISTRY/$REPOSITORY --all-tags
       
       - name: Update kubectl context 
-        run: aws eks update-kubeconfig --name simplebank --region eu-north-1
+        run: |
+             aws eks update-kubeconfig --region eu-north-1 --name simplebank
+             kubectl config use-context arn:aws:eks:eu-north-1:442042538701:cluster/simpleban
 
       - name: Deploy to EKS
         run: |

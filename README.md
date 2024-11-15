@@ -4,7 +4,9 @@
 
 **Tech Stack : Go, PostgreSQL, AWS**
 
-BASE URL : `http://ad950a068f10c4ce19f7a995869ec22c-616cedf622eb1400.elb.eu-north-1.amazonaws.com/`
+BASE URL : http://ad950a068f10c4ce19f7a995869ec22c-616cedf622eb1400.elb.eu-north-1.amazonaws.com/
+
+DB Schema documentation : https://dbdocs.io/sohamkanji02/simple_bank
 
 Routes :
 

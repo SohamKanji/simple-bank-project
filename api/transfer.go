@@ -36,7 +36,7 @@ func (server *Server) createTransfer(ctx *gin.Context) {
 		return
 	}
 
-	authPayload := ctx.MustGet(authorizationPayloadKey).(token.Payload)
+	authPayload := ctx.MustGet(authorizationPayloadKey).(*token.Payload)
 
 	if fromAccount.Owner != authPayload.Username {
 		ctx.JSON(http.StatusForbidden, errorResponse(fmt.Errorf("from account does not belong to the authenticated user")))
